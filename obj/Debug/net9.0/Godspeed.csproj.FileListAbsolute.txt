@@ -11,3 +11,5 @@ D:\Programming\Ultrakill\Godspeed\obj\Debug\net9.0\refint\Godspeed.dll
 D:\Programming\Ultrakill\Godspeed\obj\Debug\net9.0\Godspeed.pdb
 D:\Programming\Ultrakill\Godspeed\obj\Debug\net9.0\ref\Godspeed.dll
 D:\Programming\Ultrakill\Godspeed\obj\Debug\net9.0\Godspeed.sourcelink.json
+D:\Programming\Ultrakill\Godspeed\bin\Debug\net9.0\0Harmony20.dll
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net9.0\Godspeed.csproj.Up2Date

@@ -27,7 +27,8 @@ namespace Godspeed
 
         public void Start()
         {
-            
+            Harmony harmony = new Harmony(PluginInfo.GUID);
+            harmony.PatchAll();
         }
 
         public void Update()
@@ -35,15 +36,15 @@ namespace Godspeed
 
         }
 
-        [HarmonyPatch]
+        [HarmonyPatch(typeof(Speedometer))]
+        [HarmonyPatchAll]
         public static class Speedometer_Patch
         {
             [HarmonyPrefix]
-            [HarmonyPatch(typeof(Speedometer), "OnEnable")]
-            public static void patch_OnEnable(Speedometer __instance)
+            [HarmonyPatch(typeof(Speedometer), "FixedUpdate")]
+            public static void patch_FixedUpdate(Speedometer __instance)
             {
-                Logger logger = new Logger(__instance);
-                Logger.LogInfo("Speedometer OnEnable");
+                Debug.Log(__instance.lastPos);
             }
         }
     }

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35723.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrutalPSX", "BrutalPSX.csproj", "{36F8BA12-8CB2-429C-B3DD-FE9063DB7ACD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Godspeed", "Godspeed.csproj", "{D2EAA837-24BC-6130-CFBC-6E9005F8F291}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{36F8BA12-8CB2-429C-B3DD-FE9063DB7ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36F8BA12-8CB2-429C-B3DD-FE9063DB7ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36F8BA12-8CB2-429C-B3DD-FE9063DB7ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36F8BA12-8CB2-429C-B3DD-FE9063DB7ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EAA837-24BC-6130-CFBC-6E9005F8F291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EAA837-24BC-6130-CFBC-6E9005F8F291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EAA837-24BC-6130-CFBC-6E9005F8F291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EAA837-24BC-6130-CFBC-6E9005F8F291}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0F034F98-085B-4594-A570-D68A3BA65A78}
+		SolutionGuid = {B0A94F24-2AAF-4E14-98E5-A299E2BC8CC7}
 	EndGlobalSection
 EndGlobal
