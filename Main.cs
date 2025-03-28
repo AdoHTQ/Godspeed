@@ -3,6 +3,7 @@ using HarmonyLib;
 using PluginConfig.API;
 using BepInEx;
 using UnityEngine;
+using UnityEngine.UI;
 using UObj = UnityEngine.Object;
 using BepInEx.Logging;
 using MonoMod.RuntimeDetour;
@@ -10,6 +11,7 @@ using SettingsMenu.Components.Pages;
 using System.Runtime.CompilerServices;
 using PluginConfiguratorComponents;
 using PluginConfig.API.Fields;
+using System.Reflection;
 
 namespace Godspeed
 {
@@ -37,12 +39,18 @@ namespace Godspeed
             None,
             Death,
             Damage,
-            Maurice
+            Ramping/*,
+            Maurice*/
         }
 
         public void Awake()
         {
             config = PluginConfigurator.Create("Godspeed", "godspeed.settings");
+
+            string workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string iconFilePath = Path.Combine(Path.Combine(workingDirectory, "Data"), "icon.png");
+            Debug.LogError(iconFilePath);
+            config.SetIconWithURL("file://" + iconFilePath);
 
             speedThreshold = new FloatField(config.rootPanel, "Speed Threshold", "godspeed.settings.speedThreshold", 20f)
             {
@@ -63,12 +71,7 @@ namespace Godspeed
         {
             Harmony harmony = new Harmony(PluginInfo.GUID);
             harmony.PatchAll(typeof(Movement_Patch));
-            //harmony.PatchAll(typeof(BossHealthBarTemplate_Patch));
-        }
-
-        public void Update()
-        {
-
+            harmony.PatchAll(typeof(BossHealthBarTemplate_Patch));
         }
     }
 
@@ -84,16 +87,40 @@ namespace Godspeed
         }
     }
 
-    //[HarmonyPatch(typeof(BossHealthBarTemplate))]
-    //public static class BossHealthBarTemplate_Patch
-    //{
-    //    [HarmonyPostfix]
-    //    [HarmonyPatch(typeof(BossHealthBarTemplate), nameof(BossHealthBarTemplate.Initialize))]
-    //    public static void patch_Initialize(BossHealthBarTemplate __instance, object[] __args, float __introCharge)
-    //    {
-    //        BossHealthBar? bossBar = __args[0] as BossHealthBar;
-    //        if (bossBar == null) return;
-    //        if (bossBar.source is CustomBossBar) __introCharge = bossBar.source.Health;
-    //    }
-    //}
+    [HarmonyPatch(typeof(BossHealthBarTemplate))]
+    public static class BossHealthBarTemplate_Patch
+    {
+        private static CustomBossBar? bossBarSource;
+
+        private static bool onScreen = false;
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(BossHealthBarTemplate), nameof(BossHealthBarTemplate.Initialize))]
+        public static void patch_Initialize(BossHealthBarTemplate __instance, object[] __args)
+        {
+            BossHealthBar? bossBar = __args[0] as BossHealthBar;
+            if (bossBar == null) return;
+            ////if (bossBar.source is CustomBossBar) __introCharge = bossBar.source.Health;
+            if (bossBar.source is CustomBossBar) bossBarSource = bossBar.source as CustomBossBar;
+
+            __instance.GetOrAddComponent<CanvasGroup>().alpha = 0;
+
+            onScreen = false;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(BossHealthBarTemplate), nameof(BossHealthBarTemplate.UpdateState))]
+        public static void patch_UpdateState(BossHealthBarTemplate __instance)
+        {
+            if (bossBarSource == null) return;
+
+            if (MonoSingleton<PlayerTracker>.Instance.levelStarted && !onScreen)
+            {
+                __instance.GetComponent<CanvasGroup>().alpha = 1;
+                onScreen = true;
+            }
+
+            if (Godspeed.player.dead) __instance.GetComponent<CanvasGroup>().alpha = 0;
+        }
+    }
 }

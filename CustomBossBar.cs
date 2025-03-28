@@ -9,7 +9,7 @@ namespace Godspeed
 {
     class CustomBossBar : MonoBehaviour, IEnemyHealthDetails
     {
-        public string fullName;
+        public string fullName = "speed up";
         private float health;
 
         public string FullName

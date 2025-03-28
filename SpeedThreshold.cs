@@ -14,20 +14,22 @@ namespace Godspeed
 
         float timeLeft = -1f;
 
+        int currentDamage = 5;
+
         public void Start()
         {
             bossSource = gameObject.AddComponent<CustomBossBar>();
+            CreateBar();
         }
         public void Update()
         {
-            if (!MonoSingleton<PlayerTracker>.Instance.levelStarted) return;
-            if (Godspeed.player.dead) return;
-            
+            if (Godspeed.player.dead) currentDamage = 5;
+            if (Godspeed.player.dead || !MonoSingleton<PlayerTracker>.Instance.levelStarted) return;
+
             float velocity = MonoSingleton<PlayerTracker>.Instance.GetPlayerVelocity(true).magnitude;
 
             if (timeLeft < 0f && velocity < Godspeed.speedThreshold.value)
             {
-                ShowBar();
                 timeLeft = Godspeed.leniency.value;
             }
             else if (timeLeft >= 0f)
@@ -35,7 +37,7 @@ namespace Godspeed
                 if (velocity > Godspeed.speedThreshold.value)
                 {
                     timeLeft = -1f;
-                    HideBar();
+                    bossSource.Health = Godspeed.leniency.value;
                     return;
                 }
 
@@ -52,34 +54,30 @@ namespace Godspeed
                         case Godspeed.Punishments.Damage:
                             Godspeed.player.GetHurt(20, false);
                             break;
-                        case Godspeed.Punishments.Maurice:
-                            
+                        case Godspeed.Punishments.Ramping:
+                            Godspeed.player.GetHurt(currentDamage, false);
+                            currentDamage += 5;
                             break;
+                        //case Godspeed.Punishments.Maurice:
+                        //    //Instantiate<SpiderBody>();
+                        //    break;
                         default:
                             break;
                     }
-
-                    HideBar();
 
                     timeLeft = -1f;
                 }
             }
         }
 
-        private void ShowBar()
+        private void CreateBar()
         {
-            bossSource.Health = Godspeed.leniency.value;
+            bossSource.Health = Godspeed.leniency.value + 0.001f;
 
             bossBar = gameObject.AddComponent<BossHealthBar>();
             bossBar.bossName = "SPEED UP";
             bossBar.secondaryBar = false;
             bossBar.source = bossSource;
-            Debug.LogError("wawa");
-        }
-        private void HideBar()
-        {
-            bossBar.DisappearBar();
-            Component.Destroy(bossBar);
         }
     }
 }
