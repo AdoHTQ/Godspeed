@@ -1,0 +1,13 @@
+D:\Programming\Ultrakill\Godspeed\bin\Debug\net8.0\Godspeed.deps.json
+D:\Programming\Ultrakill\Godspeed\bin\Debug\net8.0\Godspeed.dll
+D:\Programming\Ultrakill\Godspeed\bin\Debug\net8.0\Godspeed.pdb
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.csproj.AssemblyReference.cache
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.AssemblyInfoInputs.cache
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.AssemblyInfo.cs
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.csproj.CoreCompileInputs.cache
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.sourcelink.json
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.dll
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\refint\Godspeed.dll
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\Godspeed.pdb
+D:\Programming\Ultrakill\Godspeed\obj\Debug\net8.0\ref\Godspeed.dll

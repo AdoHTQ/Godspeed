@@ -13,7 +13,7 @@ namespace Godspeed
     internal class PluginInfo
     {
         public const string Name = "Godspeed";
-        public const string GUID = "adohtq.uk.gspd";
+        public const string GUID = "adohtq.ultrakill.godspeed";
         public const string Version = "1.0.0";
     }
 
@@ -28,24 +28,23 @@ namespace Godspeed
         public void Start()
         {
             Harmony harmony = new Harmony(PluginInfo.GUID);
-            harmony.PatchAll();
+            harmony.PatchAll(typeof(Movement_Patch));
         }
 
         public void Update()
         {
 
         }
+    }
 
-        [HarmonyPatch(typeof(Speedometer))]
-        [HarmonyPatchAll]
-        public static class Speedometer_Patch
+    [HarmonyPatch(typeof(NewMovement))]
+    public static class Movement_Patch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Start))]
+        public static void patch_Update(NewMovement __instance)
         {
-            [HarmonyPrefix]
-            [HarmonyPatch(typeof(Speedometer), "FixedUpdate")]
-            public static void patch_FixedUpdate(Speedometer __instance)
-            {
-                Debug.Log(__instance.lastPos);
-            }
+            __instance.gameObject.AddComponent<SpeedThreshold>(); // Add the SpeedThreshold component to the NewMovement instance
         }
     }
 }
