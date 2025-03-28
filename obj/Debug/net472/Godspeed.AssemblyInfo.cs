@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Godspeed")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2e43fa322a1a1b20bef61cfa2f3fe3aa165c4f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edfa1e0935a175f34780a1baf14530a644df62a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Godspeed")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Godspeed")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
