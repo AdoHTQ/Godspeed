@@ -19,7 +19,7 @@ namespace Godspeed
     {
         public const string Name = "Godspeed";
         public const string GUID = "adohtq.ultrakill.godspeed";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.2";
     }
 
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
