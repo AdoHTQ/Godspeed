@@ -48,8 +48,8 @@ namespace Godspeed
             config = PluginConfigurator.Create("Godspeed", "godspeed.settings");
 
             string workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string iconFilePath = Path.Combine(Path.Combine(workingDirectory, "Data"), "icon.png");
-            Debug.LogError(iconFilePath);
+            string iconFilePath = Path.Combine(workingDirectory, "icon.png");
+            //Debug.LogError(iconFilePath);
             config.SetIconWithURL("file://" + iconFilePath);
 
             speedThreshold = new FloatField(config.rootPanel, "Speed Threshold", "godspeed.settings.speedThreshold", 20f)
@@ -120,7 +120,7 @@ namespace Godspeed
                 onScreen = true;
             }
 
-            if (Godspeed.player.dead) __instance.GetComponent<CanvasGroup>().alpha = 0;
+            //if (Godspeed.player.dead) __instance.GetComponent<CanvasGroup>().alpha = 0;
         }
     }
 }
