@@ -58,6 +58,9 @@ namespace Godspeed
                             Godspeed.player.GetHurt(currentDamage, false);
                             currentDamage += 5;
                             break;
+                        case Godspeed.Punishments.Restart:
+                            MonoSingleton<OptionsManager>.Instance.RestartMission();
+                            break;
                         //case Godspeed.Punishments.Maurice:
                         //    //Instantiate<SpiderBody>();
                         //    break;
